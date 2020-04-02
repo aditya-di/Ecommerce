@@ -1,0 +1,38 @@
+# Sample serialization. JSON Rendering
+from store.models import Product 
+product = Product.objects.all()[0]
+from store.serializers import ProductSerializer
+serializer = ProductSerializer()
+data = serializer.to_representation(product)
+from rest_framework.renderers import JSONRenderer 
+render= JSONRenderer()
+print(renderer.render(data))
+
+#Curl script for POST 
+curl -X POST http://localhost:8000/api/v1/products/new -d price=1.00 -d name='My product' -d description='Test product'
+
+#Curl script to DELTE 
+curl -X DELETE http://localhost:8000/api/v1/products/18/destory
+
+# ShoppingCart 
+ import json 
+ from store.models import *
+ from store.models import *
+ from store.serializers import *
+
+ product= Product.objects.all().first()
+ cart=ShoppingCart()
+ cart.save()
+ item = ShoppingCartItem(shopping_cart=cart,product=product,quantity=5)
+ item.save()
+ serializer=ProductSerializer(product)
+ print(json.dumps(serializer.data,indent=2))
+
+CRUD operations in the one go.
+ListAPIView 
+CreateAPIView 
+DestoryAPIView 
+RetrieveUpdateDestoryAPIView 
+Filter 
+SearchFilter 
+Pagination : PageNumber, LimitOffset,Cursor Pagination

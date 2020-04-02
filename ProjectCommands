@@ -1,0 +1,10 @@
+#Setup the virutal env 
+virtualenv env 
+
+#Activate virtual env
+source env/bin/activate
+
+#To install the required modules
+pip install -r requirements.txt
+
+
